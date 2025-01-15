@@ -39,5 +39,16 @@ public class Category {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+    public Object getDescription() {
+        return null;
+    }
+
+    public void toString(Object description) {
+    }
+
+    public void setId(Long id) {
+
+    }
 }
 

@@ -29,21 +29,7 @@ public class ProductService {
 
     public Product updateProduct(Long id, Product productDetails) {
         return productRepository.findById(id).map(product -> {
-            product.setName(productDetails.getName());
-            product.setDescription(productDetails.getDescription());
-            product.setPrice(productDetails.getPrice());
-            product.setCreated(productDetails.getCreated());
-            product.setUpdated(productDetails.getUpdated());
-            product.setCreatedBy(productDetails.getCreatedBy());
-            product.setUpdatedBy(productDetails.getUpdatedBy());
-            product.setActive(productDetails.isActive());
-            product.setCategory(productDetails.getCategory());
-            product.setSubCategory(productDetails.getSubCategory());
-            product.setBrand(productDetails.getBrand());
-            product.setModel(productDetails.getModel());
-            product.setSerialNumber(productDetails.getSerialNumber());
-            product.setSku(productDetails.getSku());
-            return productRepository.save(product);
+            return getProduct(productDetails, product);
         }).orElseGet(() -> {
             productDetails.setId(id);
             return productRepository.save(productDetails);
@@ -56,5 +42,36 @@ public class ProductService {
     @Transactional
     public  Product saveProduct(Product product){
         return productRepository.save(product);
+    }
+    @Transactional
+    public void deleteProduct(Product product){
+        productRepository.delete(product);
+    }
+    @Transactional
+    public void deleteProductById(Long id){
+        productRepository.deleteById(id);
+    }
+    @Transactional
+    public Product updateProductById(Long id, Product product){
+        Product productToUpdate = productRepository.findById(id).get();
+        return getProduct(product, productToUpdate);
+    }
+
+    private Product getProduct(Product product, Product productToUpdate) {
+        productToUpdate.setName(product.getName());
+        productToUpdate.setDescription(product.getDescription());
+        productToUpdate.setPrice(product.getPrice());
+        productToUpdate.setCreated(product.getCreated());
+        productToUpdate.setUpdated(product.getUpdated());
+        productToUpdate.setCreatedBy(product.getCreatedBy());
+        productToUpdate.setUpdatedBy(product.getUpdatedBy());
+        productToUpdate.setActive(product.isActive());
+        productToUpdate.setCategory(product.getCategory());
+        productToUpdate.setSubCategory(product.getSubCategory());
+        productToUpdate.setBrand(product.getBrand());
+        productToUpdate.setModel(product.getModel());
+        productToUpdate.setSerialNumber(product.getSerialNumber());
+        productToUpdate.setSku(product.getSku());
+        return productRepository.save(productToUpdate);
     }
 }

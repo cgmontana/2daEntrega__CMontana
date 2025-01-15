@@ -207,4 +207,7 @@ public class Customer {
     }
 
 
+    public String getPhoneNumber() {
+        return phone;
+    }
 }
