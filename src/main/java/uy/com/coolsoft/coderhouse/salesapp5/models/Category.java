@@ -1,9 +1,15 @@
 package uy.com.coolsoft.coderhouse.salesapp5.models;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "category_table")
 public class Category {
@@ -16,39 +22,48 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories", fetch = FetchType.EAGER)
     private List<Product> products = new ArrayList<>();
-
-    public Category(String name) {
-    }
-
-    public Category() {
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
+    private Object description;
 
     public Object getDescription() {
-        return null;
+        return description;
     }
 
-    public void toString(Object description) {
+    public void setDescription(Object description) {
+        this.description = description;
     }
 
-    public void setId(Long id) {
-
-    }
+//    public Category(String name) {
+//    }
+//
+//    public Category() {
+//
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public List<Product> getProducts() {
+//        return products;
+//    }
+//
+//    public void setProducts(List<Product> products) {
+//        this.products = products;
+//    }
+//
+//    public Object getDescription() {
+//        return null;
+//    }
+//
+//    public void toString(Object description) {
+//    }
+//
+//    public void setId(Long id) {
+//
+//    }
 }
 
