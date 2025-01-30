@@ -1,12 +1,17 @@
 package uy.com.coolsoft.coderhouse.salesapp5.models;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static jakarta.persistence.FetchType.EAGER;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "customers")
 public class Customer {
@@ -34,6 +39,7 @@ public class Customer {
     @ManyToMany(mappedBy = "customers", fetch = EAGER)
     private List<Orders> orders;
     private LocalDateTime createsAt;
+    private String phoneNumber;
 
     public Long getId() {
         return id;
@@ -202,12 +208,20 @@ public class Customer {
                 ", createsAt=" + createsAt +
                 '}';
     }
-    public Customer() {
-        super();
-    }
-
 
     public String getPhoneNumber() {
-        return phone;
+        return phoneNumber;
     }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+//    public Customer() {
+//        super();
+//    }
+//
+//
+//    public String getPhoneNumber() {
+//        return phone;
+//    }
 }

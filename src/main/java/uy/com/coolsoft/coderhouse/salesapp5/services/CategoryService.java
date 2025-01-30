@@ -29,7 +29,7 @@ public class CategoryService {
     public Category updateCategory(Long id, Category categoryDetails) {
         return categoryRepository.findById(id).map(category -> {
             category.setName(categoryDetails.getName());
-            category.toString(categoryDetails.getDescription());
+            category.toString();
             return categoryRepository.save(category);
         }).orElseGet(() -> {
             categoryDetails.setId(id);
